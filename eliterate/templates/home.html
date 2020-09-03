@@ -11,6 +11,19 @@
     <br>
     
     <div style="padding-left: 390px;">
+        <form class="form-inline my-2" action="% url 'user' %" method='GET'>
+      
+            <input
+              class="form-control search-box"
+              type="search"
+              placeholder="Find certificate..."
+              name="search_term"
+              value="{{search_term}}" 
+              
+            >
+            <input type="submit">
+          </form>
+
         {% for single_user in getuser %}
             
             {% include '_userdetail.html' %}
