@@ -1,0 +1,23 @@
+<h1 style="text-align: center;padding-top: 50px;">
+    GET ANY USER DETAIL FROM HERE
+</h1>
+
+<body>
+
+    <div style="text-align: center;padding-top: 50px;" > 
+        create a search box where u can enter a number and it is searched to give u the required.
+    </div>
+    <br>
+    <br>
+    
+    <div style="padding-left: 390px;">
+        {% for single_user in getuser %}
+            
+            {% include '_userdetail.html' %}
+            
+        {% endfor %}
+        
+    </div>
+    
+        
+</body>

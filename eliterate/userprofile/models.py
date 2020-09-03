@@ -18,5 +18,7 @@ class UserDetail(models.Model):
     end_date           =  models.DateTimeField(default=datetime.now) 
     certificatenumber  =  models.CharField(max_length=500) 
 
+
+
     def __str__(self):
         return self.name
