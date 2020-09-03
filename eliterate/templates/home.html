@@ -52,65 +52,73 @@ table{
     <br>
     
     <div style= "padding-right: 250px; padding-left: 250px;">
-        <form style="text-align: center;" class="form-inline my-2" action="% url 'search' %" method='GET'>
+        <form style="text-align: center;" class="form-inline my-2" action="{% url 'search_results' %}" method='get'>
       
             <input
               class="form-control search-box"
-              type="search"
+              type="text"
               placeholder="Find certificate..."
-              name="search_term"
-              value="{{search_term}}" 
+              name="q"
               
             >
             <input type="submit">
           </form>
 
-        {% for single_user in getuser %}
-            
-
-            <table id="customers">
-                <tr>
-                  <th>User</th>
-                  <th>Detail</th>
-                </tr>
-                <tr>
-                  <td>Certificate Holder : </td>
-                  <td>{{ single_user.name }}</td>
-                 
-                </tr>
-                <tr>
-                  <td>Certificate Number : </td>
-                  <td>{{ single_user.certificatenumber }}</td>
-              
-                </tr>
-                <tr>
-                  <td>Email : </td>
-                  <td>{{ single_user.email }}</td>
-                </tr>
-                <tr>
-                  <td>gender : </td>
-                  <td>{{ single_user.gender }}</td>
-                </tr>
-                <tr>
-                  <td>Start date :</td>
-                  <td>{{ single_user.start_date }}</td>
-                </tr>
-                <tr>
-                  <td>End date :</td>
-                  <td>{{ single_user.end_date }}</td>
-                </tr>
-                <tr>
-                  <td>Laughing Bacchus Winecellars</td>
-                  <td>Yoshi Tannamuri</td>
-                </tr>
-                <br>
-                <br>
-                <hr>
-            </table>
-              <br>
-            
-        {% endfor %}
+<!-- search result will be displayed here -->
+<div style= "padding-right: 250px; padding-left: 250px;">
+    {% for single_user in object_list %}
+      
+      {% if single_user %}
+          
+      <table id="customers">
+          <tr>
+            <th>User</th>
+            <th>Detail</th>
+          </tr>
+          <tr>
+            <td>Certificate Holder  </td>
+            <td>{{ single_user.name }}</td>
+          
+          </tr>
+          <tr>
+            <td>Certificate Number  </td>
+            <td>{{ single_user.certificatenumber }}</td>
+      
+          </tr>
+          <tr>
+            <td>Email  </td>
+            <td>{{ single_user.email }}</td>
+          </tr>
+          <tr>
+            <td>Gender  </td>
+            <td>{{ single_user.gender }}</td>
+          </tr>
+          <tr>
+            <td>Start date </td>
+            <td>{{ single_user.start_date }}</td>
+          </tr>
+          <tr>
+            <td>End date </td>
+            <td>{{ single_user.end_date }}</td>
+          </tr>
         
+          <br>
+          <br>
+          <hr>
+      </table>
+      <br>
+    
+      {% else %}
+          <p> No user is there </p>
+      {% endif %} 
+        
+    {% endfor %}
+
+
+</div>
+
+
+       
     </div>
 
     <footer>
@@ -120,5 +128,4 @@ table{
 
 </body>
 </html>
-
 

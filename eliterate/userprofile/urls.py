@@ -1,11 +1,8 @@
-
 from django.urls import path
 
-from .import views
-
-app_name='userprofile'
+from .views import HomePageView, SearchResultsView
 
 urlpatterns = [
-    path('',views.userpage,name='userpage'),
-    path('search/', views.search, name='search'),
+    path('search/', SearchResultsView.as_view(), name='search_results'),
+    path('', HomePageView.as_view(), name='home'),
 ]

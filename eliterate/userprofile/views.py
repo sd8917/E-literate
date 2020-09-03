@@ -1,28 +1,18 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.views.generic import TemplateView, ListView
+
 from .models import UserDetail
-from django.db.models import Q
 
-def userpage(request):
-    getuser = UserDetail.objects.all() #contain all detail about the user
-    return render(request, 'home.html', {'getuser': getuser})
+class HomePageView(TemplateView):
+    template_name = 'home.html'
 
-#this function return the user query into templates
-#working on
-def search(request):
-    if request.GET:
-        search_term = request.GET['search_term']
-    
-        search_results = UserDetail.objects.filter(
-           Q(certificatenumber__iexact = search_term) 
+class SearchResultsView(ListView):
+    model = UserDetail
+    template_name = 'home.html'
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        object_list = UserDetail.objects.filter(
+            certificatenumber__exact=query
         )
-
-        context = {
-            'search_term' : search_term,
-            'search_results': search_results.filter(manager=request.user)
-        }
-        return render(request, 'home.html', context)
-        
-    else:
-
-        return redirect(request, 'home.html')
+        print(object_list)
+        return object_list
